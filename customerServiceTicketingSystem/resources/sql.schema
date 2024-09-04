@@ -1,0 +1,29 @@
+CREATE DATABASE ticketing_system;
+
+USE ticketing_system;
+
+CREATE TABLE Ticket (
+    ticket_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    creation_date DATETIME NOT NULL,
+    issue_description TEXT NOT NULL,
+    status VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Assignment (
+    assignment_id INT AUTO_INCREMENT PRIMARY KEY,
+    ticket_id INT NOT NULL,
+    representative_id INT NOT NULL,
+    assignment_date DATETIME NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id)
+);
+
+CREATE TABLE Resolution (
+    resolution_id INT AUTO_INCREMENT PRIMARY KEY,
+    ticket_id INT NOT NULL,
+    resolution_date DATETIME NOT NULL,
+    resolution_details TEXT NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id)
+);
